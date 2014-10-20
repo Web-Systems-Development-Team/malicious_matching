@@ -1,57 +1,84 @@
-$.fn.highscore_table = function() { //basic plug in structure
-	$(this).load_highscores(); //don't know if there's an implicit this or not
-};
+(function($){
 
-$.fn.highscore_table.clear_highscores = function() {
-	localStorage.removeItem("highscores");
-	this.highscores = null;
-	return this;
-};
+	// this is for all highscore table objects
+	// which is okay since they're sharing local storage anyway
+	var highscores = null;
 
-$.fn.highscore_table.load_highscores = function() {
-	var str = localStorage.getItem("highscores");
-	var hs = JSON.parse(str);
-	this.highscores = hs;
-	$(this).highscore_table.draw_highscores();
-	return this;
-};
-
-$.fn.highscore_table.save_highscores = function() {
-	localStorage.setItem("highscores", JSON.stringify(this.highscores));
-	return this;
-};
-
-$.fn.highscore_table.draw_highscores = function() {
-	if(this.highscores) {
-		// var songs = data.playlist.songs;
-		// for(var i=0; i<songs.length; ++i) {
-		var text = "<tr><td>Name</td><td>Score</td></tr>";
-		var scores = this.highscores.scores;
-		for(var i=0; i<scores.length; ++i) {
-			text +="<tr><td>"+scores[i].name+"</td><td>"+scores[i].score+"</td></tr>"
+	// main plugin method
+	$.fn.highscore_table = function(action) {
+		if(!action)
+			load_highscores(this);
+		else if(action == "load")
+			load_highscores(this);
+		else if(action == "clear")
+			clear_highscores(this);
+		else if(action == "save")
+			save_highscores(this);
+		else if(action == "draw")
+			draw_highscores(this);
+		else if(action == "add")
+			add_highscore(this, arguments[1], arguments[2]);
+		else {
+			$.error('Action '+ action +' does not exist on jQuery.highscore_table');
 		}
-		$(this).html(text);
-	} else {
-		$(this).html("No high scores. Play some!!");
-	}
-	return this;
-};
+		return this;
+	};
 
-$.fn.highscore_table.add_highscore = function(name, score) {
-	var reccord = { "name":name, "score":score};
-	if(this.highscores) {
-		this.highscores.scores.push(reccord);
-		this.highscores.scores.sort(function(a, b) {
-			return b.score - a.score;
-		});
-		// trim down to 10 elements
-		while(this.highscores.scores.length > 10)
-			this.highscores.scores.pop();
-	} else {
-		this.highscores = new Object();
-		this.highscores.scores = [reccord];
+	// other plugin methods
+	function load_highscores(obj) {
+		var str = localStorage.getItem("highscores");
+		if(str != "undefined") {
+			var hs = JSON.parse(str);
+			highscores = hs;
+			draw_highscores(obj);
+		}
+		return this;
 	}
-	$(this).highscore_table.draw_highscores();
-	$(this).highscore_table.save_highscores();
-	return this;
-};
+
+	function clear_highscores(obj) {
+		localStorage.removeItem("highscores");
+		highscores = null;
+		return this;
+	}
+
+	function save_highscores(obj) {
+		localStorage.setItem("highscores", JSON.stringify(highscores));
+		return this;
+	};
+
+	function draw_highscores(obj) {
+		if(highscores) {
+			// var songs = data.playlist.songs;
+			// for(var i=0; i<songs.length; ++i) {
+			var text = "<tr><td>Name</td><td>Score</td></tr>";
+			var scores = highscores.scores;
+			for(var i=0; i<scores.length; ++i) {
+				text +="<tr><td>"+scores[i].name+"</td><td>"+scores[i].score+"</td></tr>"
+			}
+			obj.html(text);
+		} else {
+			obj.html("No high scores. Play some!!");
+		}
+		return this;
+	};
+
+	function add_highscore(obj, name, score) {
+		var reccord = { "name":name, "score":score};
+		if(highscores) {
+			highscores.scores.push(reccord);
+			highscores.scores.sort(function(a, b) {
+				return b.score - a.score;
+			});
+			// trim down to 10 elements
+			while(highscores.scores.length > 10)
+				highscores.scores.pop();
+		} else {
+			highscores = new Object();
+			highscores.scores = [reccord];
+		}
+		draw_highscores(obj);
+		// save_highscores(obj);
+		return this;
+	};
+
+}( jQuery ));
