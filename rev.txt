@@ -4,3 +4,10 @@ Update log
 - The text boxes do not update the slider value at this time, and are allowed to go out of bounds. Any code that needs to read the user chosen values reads from the sliders.
 - Right now, the Got it! button alerts the user with the percent off.
 - I have not done any work on highscores.
+
+Update 2
+====================================================
+- Added central player RGB variables. User input manipulates them directly, and anything that needs to get the player RGB reads from them directly.
+- Sliders and text boxes all initialize to 255.
+- Fixed the user circle only displaying after each slider has been moved.
+- Changed the DOM somewhat; there are now no canvases in the raw HTML file. .hexed() creates a canvas inside its element and draws on that. Removed the style tag from the head and added it to the CSS.

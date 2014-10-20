@@ -5,7 +5,7 @@
             var settings = arg;
             difficulty = settings.difficulty;
             turns = settings.turns;
-            init();
+            init(this);
         } else {
             var action = arg;
             if(action == "name of a command") {
@@ -17,26 +17,39 @@
         return this;
     }
 
-    function init() {
+    function init(hexObj) {
+	//Define r,g,b variables to hold the player entered RGB.
+	//When a player manipulates the text box or slider, this changes it.
+	//When a function needs to read from the RGB values, it reads from this.
+	red = green = blue = 255;
+
+	//Create the slider objects.
         make_sliders();
+
+	//Initialize the text boxes.
+	$("#red_slider_number").val(red);
+	$("#green_slider_number").val(green);
+	$("#blue_slider_number").val(blue);
+
+	//Add the drawing canvas.
+	hexObj.append("<canvas id=\"goalCanvas\" width=\"300\" height=\"150\"></canvas>");
+	
+	//Generate Color button click
         $("#gen").click(function() { // need time
             start = new Date().getTime();
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
             ctx.arc(100,75,50,0,2*Math.PI);
-        /* //This isn't working for some reason
-        ctx.strokeStyle="#fff";
-        ctx.lineWidth=1.5px;
-            ctx.stroke();
-        */
-        ctx.fillStyle=randomColor();
+            ctx.fillStyle=randomColor();
             ctx.fill();
         });
+
+	//Got It button click
         $("#answer").click(function() {
             end = new Date().getTime();
-        $("#score").text("Score: " + calculate_score());
-        alert(calculate_score());
+            $("#score").text("Score: " + calculate_score());
+            alert(calculate_score());
         });
     }
 
@@ -49,43 +62,42 @@
         return "#" + r.toString(16) + g.toString(16) + b.toString(16);
     }
 
-    //Draws the player's color choice from the sliders next to the original color
+    //Draws the player's color choice from the sliders next to the original
+    //color
     function playerColor() {
-        //alert("playerColoe");
         var c=document.getElementById("goalCanvas");
         var ctx=c.getContext("2d");
         ctx.beginPath();
         ctx.arc(250,75,30,0,2*Math.PI);
-        ctx.fillStyle = "#" + $("#red_slider").slider("value").toString(16) +
-    	$("#green_slider").slider("value").toString(16) +
-    	$("#blue_slider").slider("value").toString(16);
+        ctx.fillStyle =
+	    "#" + red.toString(16) + green.toString(16) + blue.toString(16);
         ctx.fill();
     }
 
     function make_sliders() {
-        $("#red_slider").slider({ min: 0, max: 255, slide: function(event, ui) {
-    	$("#red_slider_number").val(ui.value);
-    	$("#slider").find(".ui-slider-handle").text(ui.value);
-    	playerColor();
+        $("#red_slider").slider({ min: 0, max: 255, value: red, slide: function(event, ui) {
+	    red = ui.value;
+	    $("#red_slider_number").val(red);
+    	    playerColor();
         }});
-        $("#green_slider").slider({ min: 0, max: 255, slide: function(event, ui) {
-    	$("#green_slider_number").val(ui.value);
-    	playerColor();
+        $("#green_slider").slider({ min: 0, max: 255, value: green, slide: function(event, ui) {
+	    green = ui.value;
+    	    $("#green_slider_number").val(green);
+    	    playerColor();
         }});
-        $("#blue_slider").slider({ min: 0, max: 255, slide: function(event, ui) {
-    	$("#blue_slider_number").val(ui.value);
-    	playerColor();
+        $("#blue_slider").slider({ min: 0, max: 255, value: blue, slide: function(event, ui) {
+	    blue = ui.value;
+    	    $("#blue_slider_number").val(blue);
+    	    playerColor();
         }});
     }
 
     //determine the percent difference between the actual and
     //expected r, g, b variables
     function percent_off() {
-        return ((theColor[0] - $("#red_slider").slider("value"))/255 +
-                (theColor[1] - $("#green_slider").slider("value"))/255 +
-                (theColor[2] - $("#blue_slider").slider("value"))/255) * 100 / 3;
-        /* division by 765 because it would otherwise be divided by 255 and 
-           then by 3 to take the average */
+        return ((theColor[0] - red)/255 +
+                (theColor[1] - green)/255 +
+                (theColor[2] - blue)/255) * 100 / 3;
     }
 
     // determine score

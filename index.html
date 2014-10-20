@@ -4,16 +4,15 @@
     <title>Group 2 Assignment 2</title>
   	<link rel="stylesheet" href="hexed.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css">
-  	<style>#slider { margin: 10px; }	</style>
   	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+	<script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
  	<script src="highscores.js"></script>
  	<script src="hexed.js"></script>
 </head>
 <body>
     <h1 id="title">Group 2 Assignment 2: HEXED!</h1>
-    <canvas id="goalCanvas" width="300" height="150"></canvas>
 
+    <!-- This has .hexed() called on it -->
     <div id ="game"></div>
 
     <!-- sliders -->
@@ -30,9 +29,6 @@
     </div>
 <p id="score" style="#f00"></p>
 
-    
-    <canvas id="playerCanvas" width="300" height="150"></canvas> 
-
     <table id="highscores"></table>
     <!-- A quick example of how to use the highscores table plugin -->
     <script>
@@ -46,6 +42,7 @@
         // $("#highscores").highscore_table("save");
     </script>
 
+    <!-- Actually run the Hexed game -->
     <script type="text/javascript">
       $("#game").hexed({difficulty: 0, turns: 5});
     </script>

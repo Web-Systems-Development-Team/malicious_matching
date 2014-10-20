@@ -1,5 +1,5 @@
 html {
-    background-color: #000;
+    background-color: #bbb;
 }
 
 #title {
@@ -34,8 +34,7 @@ html {
 
 .slider {
 	width: 200px;
-	margin-top:10px;
-	margin-bottom:5px;
+	margin:10px;
 }
 
 input {
