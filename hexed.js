@@ -36,7 +36,7 @@
 	
 	//Generate Color button click
         $("#gen").click(function() { // need time
-            start = new Date().getTime();
+            start = new Date().getMilliseconds();
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
@@ -47,7 +47,7 @@
 
 	//Got It button click
         $("#answer").click(function() {
-            end = new Date().getTime();
+            end = new Date().getMilliseconds();
             $("#score").text("Score: " + calculate_score());
             alert(calculate_score());
         });
