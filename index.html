@@ -3,6 +3,7 @@
 <head>
     <title>Group 2 Assignment 2</title>
   	<link rel="stylesheet" href="hexed.css">
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css">
   	<style>#slider { margin: 10px; }	</style>
   	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
     <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
@@ -30,20 +31,21 @@
 
     <canvas id="playerCanvas" width="300" height="150"></canvas> --> 
 
-    <table id="highscores_one"></table>
-    <table id="highscores_two"></table>
+    <table id="highscores"></table>
+    <!-- A quick example of how to use the highscores table plugin -->
     <script>
-    	$("#highscores_one").highscore_table();
-        $("#highscores_one").highscore_table("clear");
-        $("#highscores_one").highscore_table("add", "Big Jim", 6);
-        $("#highscores_one").highscore_table("add", "Small Jim", 2);
-        $("#highscores_one").highscore_table("add", "Medium Jim", 4);
-        $("#highscores_one").highscore_table("add", "Biggest Jim", 8);
+    	$("#highscores").highscore_table();
+        $("#highscores").highscore_table("clear");
+        $("#highscores").highscore_table("add", "Big Jim", 6);
+        $("#highscores").highscore_table("add", "Small Jim", 2);
+        $("#highscores").highscore_table("add", "Medium Jim", 4);
+        $("#highscores").highscore_table("add", "Biggest Jim", 8);
         // check out how the list displayed is sorted by score
-        // $("#highscores_one").highscore_table("save");
+        // $("#highscores").highscore_table("save");
     </script>
 
-
-    <!-- <script src="hexed.js"></script> -->
+    <script type="text/javascript">
+      $("#game").hexed();
+    </script>
 </body>
 </html>
