@@ -48,13 +48,15 @@
 	//Got It button click
         $("#answer").click(function() {
             end = new Date().getMilliseconds();
-            $("#score").text("Score: " + calculate_score());
-            alert(calculate_score());
+            $("#score").text("Red: "+red_off().toFixed(1)+"% off, Green: "+green_off().toFixed(1)+"% off, Blue: "+blue_off().toFixed(1)+"% off, Score: "+calculate_score());
         });
     }
 
-    theColor=[];                       
-    function randomColor(){ //determine random rgb
+    //Holds the secret actual color values
+    theColor=[];
+
+    //determine random rgb                     
+    function randomColor(){
         var r=Math.floor((Math.random() * 255)); //range of 0-255
         var g=Math.floor((Math.random() * 255));
         var b=Math.floor((Math.random() * 255));
@@ -94,17 +96,18 @@
 
     //determine the percent difference between the actual and
     //expected r, g, b variables
+    function red_off() { return (red - theColor[0]) * 100 / 255; }
+    function green_off() { return (green - theColor[1]) * 100 / 255; }
+    function blue_off() { return (blue - theColor[2]) * 100 / 255; }
     function percent_off() {
-        return ((theColor[0] - red)/255 +
-                (theColor[1] - green)/255 +
-                (theColor[2] - blue)/255) * 100 / 3;
+        return (Math.abs(red_off()) + Math.abs(green_off()) + Math.abs(blue_off())) / 3;
     }
 
     // determine score
     // ((15 – difficulty – percent_off) / (15 – difficulty)) * (15000 – milliseconds_taken)
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
-        var score = (weighted_diff - percent_off()) / (weighted_diff * (end-start));
-        return percent_off() + "% off";
+        var score = ((weighted_diff - percent_off()) / weighted_diff) * (15000 - (end-start));
+        return score;
     }
 }( jQuery ));
