@@ -18,22 +18,24 @@
 
     <!-- sliders -->
     <div id="red_slider" class="slider"></div>
-    <p id="red_slider_number">0</p>
+    <input type="number" id="red_slider_number" value="0">
     <div id="green_slider" class="slider"></div>
-    <p id="green_slider_number">0</p>
+    <input type="number" id="green_slider_number" value="0">
     <div id="blue_slider" class="slider"></div>
-    <p id="blue_slider_number">0</p>
+    <input type="number" id="blue_slider_number" value="0">
 
     <div id="buttons">
     	<button type="button" id="gen">Generate Color!</button> 
     	<button type="button" id="answer">Got it!</button>
     </div>
+<p id="score" style="#f00"></p>
 
+    
     <canvas id="playerCanvas" width="300" height="150"></canvas> 
 
     <table id="highscores"></table>
     <script type="text/javascript">
-      $("#game").hexed();
+      $("#game").hexed({difficulty: 0, turns: 5});
     </script>
 </body>
 </html>

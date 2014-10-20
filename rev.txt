@@ -1,0 +1,6 @@
+Update log
+- Circle with the player's chosen color is now drawn next to the match circle.
+- The sliders update the text box and player circle in real time, but for some reason they don't display anything until each slider has been moved at least once...
+- The text boxes do not update the slider value at this time, and are allowed to go out of bounds. Any code that needs to read the user chosen values reads from the sliders.
+- Right now, the Got it! button alerts the user with the percent off.
+- I have not done any work on highscores.

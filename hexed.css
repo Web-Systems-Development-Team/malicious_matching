@@ -1,10 +1,5 @@
-/* Container element for the displaying color */
-.color {
-    color:#fab; /* this will get set every time the game is played */
-}
-
 html {
-    background: silver;
+    background-color: #000;
 }
 
 #title {
@@ -38,6 +33,12 @@ html {
 }
 
 .slider {
-	width: 500px;
-	height: 20px;
+	width: 200px;
+	margin-top:10px;
+	margin-bottom:5px;
+}
+
+input {
+    value:0;
+    width:40px;
 }
