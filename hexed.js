@@ -24,7 +24,7 @@
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
-            ctx.arc(100,75,50,0,2*Math.PI);
+            ctx.arc(50,75,50,0,2*Math.PI);
         /* //This isn't working for some reason
         ctx.strokeStyle="#fff";
         ctx.lineWidth=1.5px;
@@ -35,7 +35,7 @@
         });
         $("#answer").click(function() {
             end = new Date().getMilliseconds();
-        $("#score").text("Score: " + calculate_score());
+        $("#score").text("Percent off: " + percent_off() + "% off." + "Score: " + calculate_score());
         alert(calculate_score());
         });
     }
@@ -55,7 +55,7 @@
         var c=document.getElementById("goalCanvas");
         var ctx=c.getContext("2d");
         ctx.beginPath();
-        ctx.arc(250,75,30,0,2*Math.PI);
+        ctx.arc(200,75,50,0,2*Math.PI);
         ctx.fillStyle = "#" + $("#red_slider").slider("value").toString(16) +
     	$("#green_slider").slider("value").toString(16) +
     	$("#blue_slider").slider("value").toString(16);
@@ -65,7 +65,7 @@
     function make_sliders() {
         $("#red_slider").slider({ min: 0, max: 255, slide: function(event, ui) {
     	$("#red_slider_number").val(ui.value);
-    	$("#slider").find(".ui-slider-handle").text(ui.value);
+    	//$("#slider").find(".ui-slider-handle").text(ui.value);
     	playerColor();
         }});
         $("#green_slider").slider({ min: 0, max: 255, slide: function(event, ui) {
@@ -93,6 +93,6 @@
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
         var score = (weighted_diff - percent_off()) / (weighted_diff * (end-start));
-        return percent_off() + "% off";
+        return score; 
     }
 }( jQuery ));
