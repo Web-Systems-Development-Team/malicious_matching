@@ -39,3 +39,7 @@ input {
     value:0;
     width:40px;
 }
+
+#red_slider .ui-slider-handle { border-color: #ef2929; }
+#green_slider .ui-slider-handle { border-color: #8ae234; }
+#blue_slider .ui-slider-handle { border-color: #729fcf; }
