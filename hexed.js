@@ -45,7 +45,7 @@
 	
 	//Generate Color button click
         $("#gen").click(function() { // need time
-            start = new Date().getMilliseconds();
+            start = new Date().getTime();
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
@@ -56,9 +56,19 @@
 
 	//Got It button click
         $("#answer").click(function() {
-            end = new Date().getMilliseconds();
+	    turns -= 1;
+            end = new Date().getTime();
+	    if(end-start >= 15000) {
+		alert("You took more than 15 seconds, your score is 0.");
+		//score here will be the last attempt
+		$("#highscores").highscore_table("add",name,score.toFixed());
+	    }
 	    calculate_score();
             $("#score").text("Red: "+red_off().toFixed(1)+"% off, Green: "+green_off().toFixed(1)+"% off, Blue: "+blue_off().toFixed(1)+"% off, Score: "+score.toFixed(1));
+	    if(turns == 0) {
+		name = $("#player_name").val();
+		$("#highscores").highscore_table("add",name,score.toFixed());
+	    }
         });
 
 	//Text box change
@@ -125,7 +135,6 @@
     // determine score
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
-	alert(weighted_diff);
         var calcScore = ((weighted_diff - percent_off()) / weighted_diff)
 	    * (15000 - (end-start));
 	score = calcScore;
