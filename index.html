@@ -11,9 +11,25 @@
 </head>
 <body>
     <h1 id="title">Group 2 Assignment 2: HEXED!</h1>
-
-    <!-- This has .hexed() called on it -->
-    <div id ="game"></div>
+    <h2 id="info">
+        Use the sliders to guess the color!
+    </h2>
+    <div id ="game">
+        <!-- sliders -->  
+        <canvas id="goalCanvas" width="200" height="150"></canvas>
+        <canvas id="playerCanvas" width="230" height="150"></canvas>   
+        <div id="red_slider" class="slider"></div>
+        <input type="text" class="val" id="red_slider_number" value="0">
+        <div id="green_slider" class="slider"></div>
+        <input type="text" class="val" id="green_slider_number" value="0">
+        <div id="blue_slider" class="slider"></div>
+        <input type="text" class="val" id="blue_slider_number" value="0">
+        <div id="buttons">
+    	   <button type="button" id="gen">Generate Color!</button> 
+    	   <button type="button" id="answer">Got it!</button>
+        </div>
+        <p id="score" style="#f00"></p>
+    </div>
 
     <table id="highscores"></table>
     <!-- A quick example of how to use the highscores table plugin -->
@@ -30,7 +46,7 @@
 
     <!-- Actually run the Hexed game -->
     <script type="text/javascript">
-      $("#game").hexed({difficulty: 0, turns: 5});
+      $("#game").hexed({difficulty: 0, turns: 1});
     </script>
 </body>
 </html>
