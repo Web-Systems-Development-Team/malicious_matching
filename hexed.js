@@ -62,22 +62,23 @@
         });
 
 	//Text box change
+	/*
 	$("#red_slider_number").input(function() {
-	    alert("doopliss");
 	    red = this.value;
 	    $("#red_slider").value = red;
 	    playerColor();
 	});
+	*/
     }
 
     //Holds the secret actual color values
     theColor=[];
 
     //determine random rgb                     
-    function randomColor(){
-        var r=Math.floor((Math.random() * 255)); //range of 0-255
-        var g=Math.floor((Math.random() * 255));
-        var b=Math.floor((Math.random() * 255));
+    function randomColor() {
+        var r=Math.floor(Math.random()*255/(11-difficulty))*(11-difficulty); 
+        var g=Math.floor(Math.random()*255/(11-difficulty))*(11-difficulty);
+        var b=Math.floor(Math.random()*255/(11-difficulty))*(11-difficulty);
         theColor=[r,g,b];
         return "#" + r.toString(16) + g.toString(16) + b.toString(16);
     }
@@ -95,17 +96,17 @@
     }
 
     function make_sliders() {
-        $("#red_slider").slider({ min: 0, max: 255, value: red, slide: function(event, ui) {
+        $("#red_slider").slider({ min: 0, max: 255, value: red, step: 11-difficulty, slide: function(event, ui) {
 	    red = ui.value;
 	    $("#red_slider_number").val(red.toString(16));
     	    playerColor();
         }});
-        $("#green_slider").slider({ min: 0, max: 255, value: green, slide: function(event, ui) {
+        $("#green_slider").slider({ min: 0, max: 255, value: green, step: 11-difficulty, slide: function(event, ui) {
 	    green = ui.value;
     	    $("#green_slider_number").val(green.toString(16));
     	    playerColor();
         }});
-        $("#blue_slider").slider({ min: 0, max: 255, value: blue, slide: function(event, ui) {
+        $("#blue_slider").slider({ min: 0, max: 255, value: blue, step: 11-difficulty, slide: function(event, ui) {
 	    blue = ui.value;
     	    $("#blue_slider_number").val(blue.toString(16));
     	    playerColor();
@@ -124,6 +125,7 @@
     // determine score
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
+	alert(weighted_diff);
         var calcScore = ((weighted_diff - percent_off()) / weighted_diff)
 	    * (15000 - (end-start));
 	score = calcScore;
