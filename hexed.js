@@ -36,12 +36,6 @@
 
 	//Add the drawing canvas and other elements.
 	hexObj.append("<canvas id=\"goalCanvas\" width=\"300\" height=\"150\"></canvas>");
-	/*
-	hexObj.append("<div id=\"red_slider\" class=\"slider\"></div><input type=\"number\" id=\"red_slider_number\" value=\"0\">");
-	hexObj.append("<div id=\"green_slider\" class=\"slider\"></div><input type=\"number\" id=\"green_slider_number\" value=\"0\">");
-	hexObj.append("<div id=\"blue_slider\" class=\"slider\"></div><input type=\"number\" id=\"blue_slider_number\" value=\"0\">");
-	hexObj.append("<div id=\"buttons\"><button type=\"button\" id=\"gen\">Generate Color!</button><button type=\"button\" id=\"answer\">Got it!</button></div><p id=\"score\" style=\"#f00\"></p>");
-	*/
 	
 	//Generate Color button click
         $("#gen").click(function() { // need time
@@ -70,15 +64,6 @@
 		$("#highscores").highscore_table("add",name,score.toFixed());
 	    }
         });
-
-	//Text box change
-	/*
-	$("#red_slider_number").input(function() {
-	    red = this.value;
-	    $("#red_slider").value = red;
-	    playerColor();
-	});
-	*/
     }
 
     //Holds the secret actual color values
