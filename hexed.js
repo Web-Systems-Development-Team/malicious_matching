@@ -7,12 +7,16 @@
             turns = settings.turns;
             init(this);
         } else {
+	    difficulty = 5;
+	    turns = 10;
+	    /*
             var action = arg;
             if(action == "name of a command") {
                 ;; //do that command 
             } else {
                 $.error('Action '+ action +' does not exist on jQuery.hexed');
             }
+	    */
         }
         return this;
     }
@@ -46,9 +50,6 @@
             ctx.fillStyle=randomColor();
             ctx.fill();
             count=count+1;
-            if(count==document.getElementById('turns').value){
-                alert("You lose");
-            }
         });
 
 	//Got It button click
@@ -58,13 +59,14 @@
 	    if(end-start >= 15000) {
 		alert("You took more than 15 seconds, your score is 0.");
 		//score here will be the last attempt
-		$("#highscores").highscore_table("add",name,score.toFixed());
+		$("#highscores").highscore_table("add",name,0);
 	    }
 	    calculate_score();
-            $("#score").text("Percent off: " + percent_off() + "% off." + "Score: " + calculate_score());
+            $("#score").text("Percent off: " + percent_off().toFixed(1) + "% off." + "Score: " + score.toFixed());
 	    if(turns == 0) {
 		name = $("#player_name").val();
 		$("#highscores").highscore_table("add",name,score.toFixed());
+		//$("#game").hide(600);
 	    }
         });
     }
@@ -78,7 +80,6 @@
         var g=Math.floor(Math.random()*255/(11-difficulty))*(11-difficulty);
         var b=Math.floor(Math.random()*255/(11-difficulty))*(11-difficulty);
         theColor=[r,g,b];
-	alert(r+" "+g+" "+b+" ");
         return "#" + r.toString(16) + g.toString(16) + b.toString(16);
     }
 
