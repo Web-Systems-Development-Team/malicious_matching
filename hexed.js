@@ -120,14 +120,14 @@ Difficulty and turns remain unimplemented.
             }
         });
 
-        // bind input box with slider's value
+        /* bind input box with slider's value 
+        and set the range of input box (0-255) */
         $("#red_slider_number").change(function () {
             if ($(this).val() > 255)
                 $(this).val(255);
             else if ($(this).val() < 0)
                 $(this).val(0);
-            //var value = this.value.substring(1);
-            //console.log(value);
+
             $("#red_slider").slider("value", parseInt($(this).val()));
             playerColor();
         });
@@ -136,8 +136,7 @@ Difficulty and turns remain unimplemented.
                 $(this).val(255);
             else if ($(this).val() < 0)
                 $(this).val(0);
-            //var value = this.value.substring(1);
-            //console.log(value);
+ 
             $("#green_slider").slider("value", parseInt($(this).val()));
             playerColor();
         });
@@ -146,8 +145,7 @@ Difficulty and turns remain unimplemented.
                 $(this).val(255);
             else if ($(this).val() < 0)
                 $(this).val(0);
-            //var value = this.value.substring(1);
-            //console.log(value);
+            
             $("#blue_slider").slider("value", parseInt($(this).val()));
             playerColor();
         });
