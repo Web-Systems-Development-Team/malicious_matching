@@ -111,6 +111,25 @@
     	    $("#blue_slider_number").val(blue.toString(16));
     	    playerColor();
         }});
+        $("#red_slider_number").change(function () {
+            red = parseInt($(this).val());
+            $(this).val(red.toString(16));
+            $("#red_slider").slider("value", red);
+            playerColor();
+        });
+        $("#green_slider_number").change(function () {
+            green = parseInt($(this).val());
+            $(this).val(green.toString(16));
+            $("#green_slider").slider("value", green);
+            playerColor();
+        });
+        $("#blue_slider_number").change(function () {
+            blue = parseInt($(this).val());
+            $(this).val(blue.toString(16));
+            $("#blue_slider").slider("value", blue);
+            playerColor();
+        });
+        
     }
 
     //determine the percent difference between the actual and
