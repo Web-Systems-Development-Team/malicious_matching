@@ -23,16 +23,25 @@
 	//When a function needs to read from the RGB values, it reads from this.
 	red = green = blue = 255;
 
+	//Saved score, to be used in the same fashion.
+	score = 0;
+
 	//Create the slider objects.
         make_sliders();
 
 	//Initialize the text boxes.
-	$("#red_slider_number").val(red);
-	$("#green_slider_number").val(green);
-	$("#blue_slider_number").val(blue);
+	$("#red_slider_number").val(red.toString(16));
+	$("#green_slider_number").val(green.toString(16));
+	$("#blue_slider_number").val(blue.toString(16));
 
-	//Add the drawing canvas.
+	//Add the drawing canvas and other elements.
 	hexObj.append("<canvas id=\"goalCanvas\" width=\"300\" height=\"150\"></canvas>");
+	/*
+	hexObj.append("<div id=\"red_slider\" class=\"slider\"></div><input type=\"number\" id=\"red_slider_number\" value=\"0\">");
+	hexObj.append("<div id=\"green_slider\" class=\"slider\"></div><input type=\"number\" id=\"green_slider_number\" value=\"0\">");
+	hexObj.append("<div id=\"blue_slider\" class=\"slider\"></div><input type=\"number\" id=\"blue_slider_number\" value=\"0\">");
+	hexObj.append("<div id=\"buttons\"><button type=\"button\" id=\"gen\">Generate Color!</button><button type=\"button\" id=\"answer\">Got it!</button></div><p id=\"score\" style=\"#f00\"></p>");
+	*/
 	
 	//Generate Color button click
         $("#gen").click(function() { // need time
@@ -48,8 +57,17 @@
 	//Got It button click
         $("#answer").click(function() {
             end = new Date().getMilliseconds();
-            $("#score").text("Red: "+red_off().toFixed(1)+"% off, Green: "+green_off().toFixed(1)+"% off, Blue: "+blue_off().toFixed(1)+"% off, Score: "+calculate_score());
+	    calculate_score();
+            $("#score").text("Red: "+red_off().toFixed(1)+"% off, Green: "+green_off().toFixed(1)+"% off, Blue: "+blue_off().toFixed(1)+"% off, Score: "+score.toFixed(1));
         });
+
+	//Text box change
+	$("#red_slider_number").input(function() {
+	    alert("doopliss");
+	    red = this.value;
+	    $("#red_slider").value = red;
+	    playerColor();
+	});
     }
 
     //Holds the secret actual color values
@@ -79,17 +97,17 @@
     function make_sliders() {
         $("#red_slider").slider({ min: 0, max: 255, value: red, slide: function(event, ui) {
 	    red = ui.value;
-	    $("#red_slider_number").val(red);
+	    $("#red_slider_number").val(red.toString(16));
     	    playerColor();
         }});
         $("#green_slider").slider({ min: 0, max: 255, value: green, slide: function(event, ui) {
 	    green = ui.value;
-    	    $("#green_slider_number").val(green);
+    	    $("#green_slider_number").val(green.toString(16));
     	    playerColor();
         }});
         $("#blue_slider").slider({ min: 0, max: 255, value: blue, slide: function(event, ui) {
 	    blue = ui.value;
-    	    $("#blue_slider_number").val(blue);
+    	    $("#blue_slider_number").val(blue.toString(16));
     	    playerColor();
         }});
     }
@@ -104,10 +122,11 @@
     }
 
     // determine score
-    // ((15 – difficulty – percent_off) / (15 – difficulty)) * (15000 – milliseconds_taken)
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
-        var score = ((weighted_diff - percent_off()) / weighted_diff) * (15000 - (end-start));
-        return score;
+        var calcScore = ((weighted_diff - percent_off()) / weighted_diff)
+	    * (15000 - (end-start));
+	score = calcScore;
     }
+    
 }( jQuery ));
