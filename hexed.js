@@ -34,15 +34,21 @@
 	$("#green_slider_number").val(green);
 	$("#blue_slider_number").val(blue);
 	
+        var count=0;
+	
 	//Generate Color button click
         $("#gen").click(function() { // need time
             start = new Date().getTime();
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
-	    ctx.arc(50,75,50,0,2*Math.PI);
+            ctx.arc(100,75,50,0,2*Math.PI);
             ctx.fillStyle=randomColor();
             ctx.fill();
+            count=count+1;
+            if(count==document.getElementById('turns').value){
+                alert("You lose");
+            }
         });
 
 	//Got It button click
@@ -55,7 +61,7 @@
 		$("#highscores").highscore_table("add",name,score.toFixed());
 	    }
 	    calculate_score();
-            $("#score").text("Red: "+red_off().toFixed(1)+"% off, Green: "+green_off().toFixed(1)+"% off, Blue: "+blue_off().toFixed(1)+"% off, Score: "+score.toFixed(1));
+            $("#score").text("Percent off: " + percent_off() + "% off." + "Score: " + calculate_score());
 	    if(turns == 0) {
 		name = $("#player_name").val();
 		$("#highscores").highscore_table("add",name,score.toFixed());
@@ -82,7 +88,7 @@
         var c=document.getElementById("playerCanvas");
         var ctx=c.getContext("2d");
         ctx.beginPath();
-        ctx.arc(200,75,30,0,2*Math.PI);
+        ctx.arc(100,75,50,0,2*Math.PI);
         ctx.fillStyle =
 	    "#" + red.toString(16) + green.toString(16) + blue.toString(16);
         ctx.fill();
