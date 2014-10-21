@@ -12,26 +12,31 @@
 </head>
 <body>
     <h1 id="title">Group 2 Assignment 2: HEXED!</h1>
+    <p>Enter difficulty (0-15):</p>
+    <input type="number" id="difficulty">
+    <p>Enter number of turn:</p>
+    <input type="number" id="turns">
     <canvas id="goalCanvas" width="300" height="150"></canvas>
 
     <div id ="game"></div>
 
     <!-- sliders -->
     <div id="red_slider" class="slider"></div>
-    <input type="number" id="red_slider_number" value="0">
+    <input type="text" id="red_slider_number" value="0">
     <div id="green_slider" class="slider"></div>
-    <input type="number" id="green_slider_number" value="0">
+    <input type="text" id="green_slider_number" value="0">
     <div id="blue_slider" class="slider"></div>
-    <input type="number" id="blue_slider_number" value="0">
+    <input type="text" id="blue_slider_number" value="0">
+
 
     <div id="buttons">
     	<button type="button" id="gen">Generate Color!</button> 
     	<button type="button" id="answer">Got it!</button>
     </div>
-<p id="score" style="#f00"></p>
+    <p id="score"></p>
 
     
-    <canvas id="playerCanvas" width="300" height="150"></canvas> 
+    <!--canvas id="playerCanvas" width="300" height="150"></canvas--> 
 
     <table id="highscores"></table>
     <!-- A quick example of how to use the highscores table plugin -->
@@ -47,7 +52,22 @@
     </script>
 
     <script type="text/javascript">
-      $("#game").hexed({difficulty: 0, turns: 5});
+        //var diff = $("#difficulty").val();
+        //var turn = $("#turns").val();
+        //var setting = {difficulty: diff, turns: turn};
+
+        /*if (!diff && !turn) {
+            $("#game").hexed({difficulty: 0, turns: 5});
+        }
+        else if (!diff && turn) {
+            $("#game").hexed({difficulty: 0, turns: turn});
+        }
+        else if (diff && !turn) {
+            $("#game").hexed({difficulty: diff, turns: 5});
+        }
+        else {*/
+            $("#game").hexed({difficulty: 0, turns: 0});
+        //}
     </script>
 </body>
 </html>
