@@ -27,13 +27,7 @@
             ctx.beginPath();
             ctx.arc(100,75,50,0,2*Math.PI);
             ctx.fillStyle=randomColor();
-            ctx.arc(50,75,50,0,2*Math.PI);
-        /* //This isn't working for some reason
-        ctx.strokeStyle="#fff";
-        ctx.lineWidth=1.5px;
-            ctx.stroke();
-        */
-        ctx.fillStyle=randomColor();
+            ctx.fillStyle=randomColor();
             ctx.fill();
             count=count+1;
             if(count==document.getElementById('turns').value){
@@ -64,7 +58,6 @@
         var c=document.getElementById("playerCanvas");
         var ctx=c.getContext("2d");
         ctx.beginPath();
-        ctx.arc(200,75,50,0,2*Math.PI);
         ctx.arc(100,75,50,0,2*Math.PI);
         ctx.fillStyle = "#" + $("#red_slider").slider("value").toString(16) +
     	$("#green_slider").slider("value").toString(16) +
