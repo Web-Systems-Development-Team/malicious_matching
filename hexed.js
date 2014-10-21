@@ -52,10 +52,14 @@
     //Draws the player's color choice from the sliders next to the original color
     function playerColor() {
         //alert("playerColoe");
-        var c=document.getElementById("goalCanvas");
+        var c=document.getElementById("playerCanvas");
         var ctx=c.getContext("2d");
         ctx.beginPath();
+<<<<<<< HEAD
         ctx.arc(200,75,50,0,2*Math.PI);
+=======
+        ctx.arc(100,75,50,0,2*Math.PI);
+>>>>>>> 3708058104b6b5a29a743c9e9a1d485f3e0a2eff
         ctx.fillStyle = "#" + $("#red_slider").slider("value").toString(16) +
     	$("#green_slider").slider("value").toString(16) +
     	$("#blue_slider").slider("value").toString(16);
