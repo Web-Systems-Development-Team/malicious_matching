@@ -1,15 +1,16 @@
 /*
 To-Do:
 
-[Done] Text boxes do not change the input when changed, and they can go outside 0-255.
- 
+[Half-Done] Text boxes do not change the input when changed, and they can go outside 0-255.
+- set range 0-255 for input boxes
 [Done] Text boxes display as decimal (the spec states that they need to be hex)
-
-There seems to be a bug in the scoring system on my branch (unimplemented in master).
-
+- display hex in input boxes
+[Done] There seems to be a bug in the scoring system on my branch (unimplemented in master).
+- fixed calxulate_score function
 Many of the elements are still in the underlying DOM, and they need to be created as part of whatever object calls hexed().
 
-Difficulty and turns remain unimplemented.
+[Done] Difficulty and turns remain unimplemented.
+- need to input difficulty and number of turns before generate color
 */
 
 
@@ -145,7 +146,7 @@ Difficulty and turns remain unimplemented.
                 $(this).val(255);
             else if ($(this).val() < 0)
                 $(this).val(0);
-            
+
             $("#blue_slider").slider("value", parseInt($(this).val()));
             playerColor();
         });
@@ -165,7 +166,8 @@ Difficulty and turns remain unimplemented.
     // ((15 – difficulty – percent_off) / (15 – difficulty)) * (15000 – milliseconds_taken)
     function calculate_score() {
         var weighted_diff = 15 - difficulty;
-        var score = (weighted_diff - percent_off()) / (weighted_diff * (end-start));
+        var score = (weighted_diff - percent_off()) / weighted_diff * (15000 - Math.abs(end-start));
+        alert("milliseconds_taken: " + Math.abs(end-start));
         return percent_off() + "% off | " + score + " points";
     }
 }( jQuery ));
