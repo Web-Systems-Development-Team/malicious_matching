@@ -4,37 +4,44 @@
     <title>Group 2 Assignment 2</title>
   	<link rel="stylesheet" href="hexed.css">
 	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css">
-  	<style>#slider { margin: 10px; }	</style>
-  	<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+  	<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
  	<script src="highscores.js"></script>
  	<script src="hexed.js"></script>
 </head>
 <body>
     <h1 id="title">Group 2 Assignment 2: HEXED!</h1>
+<<<<<<< HEAD
     <h2 id="info">
         Use the sliders to guess the color!
     </h2>
     <canvas id="goalCanvas" width="300" height="150"></canvas>
+=======
+>>>>>>> origin/master
 
-    <div id ="game"></div>
-
-    <!-- sliders -->
-    <div id="red_slider" class="slider"></div>
-    <input type="number" id="red_slider_number" value="0">
-    <div id="green_slider" class="slider"></div>
-    <input type="number" id="green_slider_number" value="0">
-    <div id="blue_slider" class="slider"></div>
-    <input type="number" id="blue_slider_number" value="0">
-
-    <div id="buttons">
-    	<button type="button" id="gen">Generate Color!</button> 
-    	<button type="button" id="answer">Got it!</button>
+    <div id ="game">
+        <!-- sliders -->  
+        <canvas id="goalCanvas" width="200" height="150"></canvas>
+        <canvas id="playerCanvas" width="230" height="150"></canvas>   
+        <div id="red_slider" class="slider"></div>
+        <input type="number" class="val" id="red_slider_number" value="0">
+        <div id="green_slider" class="slider"></div>
+        <input type="number" class="val" id="green_slider_number" value="0">
+        <div id="blue_slider" class="slider"></div>
+        <input type="number" class="val" id="blue_slider_number" value="0">
+        <div id="buttons">
+    	   <button type="button" id="gen">Generate Color!</button> 
+    	   <button type="button" id="answer">Got it!</button>
+        </div>
+        <p id="score" style="#f00"></p>
     </div>
+<<<<<<< HEAD
 <p id="score" style="#f00"></p>
 
     
     <!-- <canvas id="playerCanvas" width="300" height="150"></canvas> -->
+=======
+>>>>>>> origin/master
 
     <table id="highscores"></table>
     <!-- A quick example of how to use the highscores table plugin -->
