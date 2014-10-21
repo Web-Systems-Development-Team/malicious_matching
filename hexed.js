@@ -19,24 +19,24 @@
 
     function init() {
         make_sliders();
+        var count=0;
         $("#gen").click(function() { // need time
             start = new Date().getMilliseconds();
             var c=document.getElementById("goalCanvas");
             var ctx=c.getContext("2d");
             ctx.beginPath();
             ctx.arc(100,75,50,0,2*Math.PI);
-        /* //This isn't working for some reason
-        ctx.strokeStyle="#fff";
-        ctx.lineWidth=1.5px;
-            ctx.stroke();
-        */
-        ctx.fillStyle=randomColor();
+            ctx.fillStyle=randomColor();
             ctx.fill();
+            count=count+1;
+            if(count==document.getElementById('turns').value){
+                alert("You lose");
+            }
         });
         $("#answer").click(function() {
             end = new Date().getMilliseconds();
         $("#score").text("Score: " + calculate_score());
-        alert(calculate_score());
+            $("#score").html(calculate_score());
         });
     }
 
