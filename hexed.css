@@ -1,7 +1,3 @@
-html {
-    background-color: #000;
-}
-
 #title {
     opacity: .8;
     color: red;
@@ -21,24 +17,51 @@ html {
 #buttons {
    text-align: center;
 }
-
+#goalCanvas{
+  float: left;
+  margin-left: 9.5em;
+}
+#playerCanvas{
+  margin-left: auto;
+  margin-right: auto;
+}
 #gen:hover, #answer:hover {
     background-color: white;
     color: blue;
 }
-
 html {
     padding-top: 1%;
     padding-left: 1%;
 }
-
-.slider {
-	width: 200px;
-	margin-top:10px;
-	margin-bottom:5px;
+body{
+  text-align: center;
 }
-
+#game{
+  width:50em;
+  margin: 0 auto;
+  text-align:center;
+  position:relative;
+  border-style: dashed;
+}
+.slider {
+	width: 20em;
+	margin-top:10px;
+  margin-bottom: 20px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.val{
+  width: 3em;
+  margin-bottom: 10px;
+}
 input {
     value:0;
     width:40px;
+}
+#highscores{
+  width:15em;
+  padding-top: 2em;
+  margin: 0 auto;
+  text-align:center;
+  position:relative;
 }
